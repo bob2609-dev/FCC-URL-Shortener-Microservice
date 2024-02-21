@@ -22,6 +22,12 @@ app.get('/api/hello', function(req, res) {
 app.post("/api/shorturl",(req,res)=>{
   
   console.log(req.originalUrl)
+  let input = '', domain = '', param = '', short = 0;
+
+  input = req.body.url;
+  if (input === null || input === '') { 
+    return res.json({ error: 'invalid url' }); 
+  }
   // console.log(req.)
 
 })
