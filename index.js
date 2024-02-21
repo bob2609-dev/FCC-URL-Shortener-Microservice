@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const url = require('url')
 const { isUrl } = require('check-valid-url');
+const {dns} = require('dns')
 
 const shortUniqueId = require('short-unique-id');
 
