@@ -20,7 +20,10 @@ app.get('/api/hello', function(req, res) {
 });
 
 app.post("/api/shorturl",(req,res)=>{
-  console.log("now posting...")
+  
+  console.log(req.originalUrl)
+  // console.log(req.)
+
 })
 
 
