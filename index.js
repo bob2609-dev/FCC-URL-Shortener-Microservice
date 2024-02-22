@@ -58,6 +58,11 @@ function isValidUrl(input) {
   }
 }
 
+app.get('/api/shorturl/:short_url',(req,res)=>{
+
+  console.log(req.params.short_url)
+})
+
 
 
 app.listen(port, function () {
