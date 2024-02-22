@@ -5,7 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const url = require('url')
 const { isUrl } = require('check-valid-url');
-const {dns} = require('dns')
+const { dns } = require('dns')
 
 const shortUniqueId = require('short-unique-id');
 
@@ -22,6 +22,7 @@ app.get('/', function (req, res) {
   res.sendFile(process.cwd() + '/views/index.html');
 });
 
+let url_pair = { original_url: '', short_url: '' };
 // Your first API endpoint
 app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' });
@@ -37,6 +38,7 @@ app.post("/api/shorturl", (req, res) => {
   const ogURL = req.body.url;
   const shortURL = customUid.rnd()
   let input = '', domain = '', param = '', short = 0;
+  url_pair = { original_url: ogURL, short_url: shortURL };
 
   isValidUrl(ogURL)
     ? res.json({ original_url: ogURL, short_url: shortURL })
@@ -58,13 +60,16 @@ function isValidUrl(input) {
   }
 }
 
-app.get('/api/shorturl/:short_url',(req,res)=>{
+app.get('/api/shorturl/:short_url', (req, res) => {
+  console.log(url_pair);
 
   console.log(req.params.short_url)
+  res.send(url_pair)
 })
 
 
 
 app.listen(port, function () {
+  // const urlPair = localStorage.getItem('url_pair')
   console.log(`Listening on port ${port}`);
 });
